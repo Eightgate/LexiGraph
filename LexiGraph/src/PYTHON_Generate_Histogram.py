@@ -11,13 +11,11 @@ def generate_histogram(input_data: str) -> None:
     Generates a histogram from a JSON object or dictionary containing bigram counts.
     
     Parameters:
-        input_data: Either a JSON string or a dictionary with bigram counts.
+        input_data:  a JSON string 
     
     Returns:
         None
     """
-#    bigram_dict = parse_to_dict(input_data)
-
     bigram_dict = json.loads(input_data)
 
     # Prepare labels and counts.
@@ -44,4 +42,4 @@ if __name__ == "__main__":
         print(counted)
         generate_histogram(counted)
     else:
-        print("Usage: python text_cleaner.py \"Your text here\"")
+        print("python text_cleaner.py )

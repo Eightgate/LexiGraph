@@ -16,7 +16,7 @@ namespace LexiGraph
         public static void Main(string[] args)
         {
             // Verify that an argument has been passed
-            if (args.Length == 0)
+            if (args.Length < 2)
             {
                 Console.WriteLine("Please call this program with a text file or txt to process");
                 Console.WriteLine("Example:  dotnet run filename sample.txt");
@@ -47,7 +47,7 @@ namespace LexiGraph
             string cleanData = pyBridge.CleanText(rawData);
 
             // Get the bigrams as a json string
-            string gramData = pyBridge.getNgrams(cleanData);
+            string gramData = pyBridge.GetNgrams(cleanData);
 
             // Generate graph 
             pyBridge.GenerateHistogram(gramData);

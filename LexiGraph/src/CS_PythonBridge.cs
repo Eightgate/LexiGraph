@@ -15,6 +15,7 @@ namespace LexiGraph.src
         private const string PythonTextCleanerModule = "PYTHON_Text_Prep";
         private const string PythonNgramGenerationModule = "PYTHON_Ngram_Builder";
         private const string PythonHistogramGenerator = "PYTHON_Generate_Histogram";
+
         private readonly string _pythonDll;
         private readonly string _scriptDirectory;
 
@@ -89,7 +90,7 @@ namespace LexiGraph.src
         /// <exception cref="Exception">
         /// Thrown when an error occurs during the text cleaning.
         /// </exception>
-        public string getNgrams(string dirtyText, int n = 2)
+        public string GetNgrams(string dirtyText, int n = 2)
         {
             // Determine the full path of the Python script.
             string fullPath = System.IO.Path.GetFullPath(_scriptDirectory);
@@ -114,18 +115,6 @@ namespace LexiGraph.src
                     string jsonStr = (string)jsonResult;
                     //var result = JsonConvert.DeserializeObject<Dictionary<string, int>>(jsonStr);
                     return jsonStr;
-
-
-
-
-
-                    // Import the Python module 
-                    //dynamic ngram_generator = Py.Import(PythonNgramGenerationModule);
-
-                    // Call the clean_text function from the Python module.
-                    //dynamic ngram_dict = ngram_generator.create_bigram_dictionary(dirtyText);
-
-                    //return (Dictionary<String, int>) ngram_dict;
                 }
             }
             catch (Exception ex)
