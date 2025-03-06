@@ -1,5 +1,4 @@
-﻿import re
-import string
+﻿import string
 import sys
 import json
 from collections import Counter
@@ -42,4 +41,4 @@ if __name__ == "__main__":
         print(counted)
         generate_histogram(counted)
     else:
-        print("python text_cleaner.py )
+        print('python text_cleaner.py')

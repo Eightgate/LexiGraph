@@ -2,7 +2,6 @@
 import string
 import sys
 import json
-from collections import Counter
 
 import nltk
 from nltk.util import ngrams

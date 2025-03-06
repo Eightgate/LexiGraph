@@ -1,5 +1,4 @@
 ﻿
-import re
 import string
 import sys
 import json
@@ -9,8 +8,6 @@ import nltk
 from nltk.util import ngrams
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
-
-import matplotlib.pyplot as plt
 
 def create_bigram_dictionary_as_json(cleaned_text: str, n: int = 2) -> str:
     tokens = word_tokenize(cleaned_text)
