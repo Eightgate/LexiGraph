@@ -21,6 +21,20 @@ class TestTextPrep:
         expected = 'hello world'
         assert result == expected
 
+    def test_clean_text_removes_newlines_and_extra_whitespace(self):
+        """
+        Test that clean_text removes newline characters and extra whitespace.
+        """
+        # Example input containing newlines, carriage returns, and extra spaces.
+        input_text = "Line one.\n        Line two.\r\n Line three.s" # dirty example
+        expected = "line one line two line threes"                   # hoped for clean result 
+    
+        from PYTHON_Text_Prep import clean_text  # import setup 
+    
+        result = clean_text(input_text)
+        assert result == expected
+
+
 
 class TestNgramBuilder:
     def test_create_bigram_dictionary_as_json_returns_valid_json(self):

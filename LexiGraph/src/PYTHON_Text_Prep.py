@@ -31,7 +31,15 @@ def clean_text(input_text, remove_stopwords=False, remove_numbers=False):
     
     # Remove punctuation using str.translate.
     text = text.translate(str.maketrans('', '', string.punctuation))
-    
+
+    # Remove newlines and returns
+    chars_to_remove = string.whitespace.replace(" ", "")
+    text = text.translate(str.maketrans('', '', chars_to_remove))
+
+    # Remove extra white space
+    text = " ".join(text.split())
+
+
     # remove stopwords.
     if remove_stopwords:
         try:
@@ -44,4 +52,5 @@ def clean_text(input_text, remove_stopwords=False, remove_numbers=False):
         text = ' '.join(words)
     
     # TODO lemmatize
+
     return text

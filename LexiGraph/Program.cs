@@ -24,7 +24,7 @@ namespace LexiGraph
                 Environment.Exit(2);
             }
 
-            // TODO: Validate input
+            // TODO: Validate input (empty file, invalid file name, file size)
 
             // Get the raw data to be passed later
             String rawData;

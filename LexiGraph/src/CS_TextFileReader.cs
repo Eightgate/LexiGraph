@@ -18,21 +18,35 @@ namespace LexiGraph.src
         /// <returns>A string containing all the text read from the file.</returns>
         public string ReadFile(string fileName)
         {
-            // If filePath is not rooted, assume it's a file name in the current working directory.
-            if (!Path.IsPathRooted(fileName))
+            try
             {
-                fileName = Path.Combine(Environment.CurrentDirectory, fileName);
-            }
+                // Read the entire file.
+                string fileContent = File.ReadAllText(fileName);
 
-            if (!File.Exists(fileName))
+                // Check if the file is empty or contains only whitespace.
+                if (string.IsNullOrWhiteSpace(fileContent))
+                {
+                    throw new InvalidDataException("The file is empty.");
+                }
+
+                // Return the valid file content.
+                return fileContent;
+            }
+            catch (UnauthorizedAccessException ex)
             {
-                throw new FileNotFoundException($"File not found: {fileName}");
+                Console.Error.WriteLine("Access denied reading file: " + ex.Message);
+                throw;  // Optionally rethrow or handle further.
             }
-
-            // Read all text from the file.
-            string fileContent = File.ReadAllText(fileName);
-
-            return fileContent;
+            catch (IOException ex)
+            {
+                Console.Error.WriteLine("I/O error reading file: " + ex.Message);
+                throw;
+            }
+            catch (InvalidDataException ex)
+            {
+                Console.Error.WriteLine("Empty file error: " + ex.Message);
+                throw;
+            }
         }
     }
 }
