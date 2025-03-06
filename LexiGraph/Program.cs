@@ -1,5 +1,6 @@
 ﻿using System;
 using LexiGraph.src;
+using Microsoft.Extensions.Configuration;
 
 /// <summary>
 /// Main entry point for C# execution of LexiGraph
@@ -35,10 +36,23 @@ namespace LexiGraph
                 rawData = textFileReader.ReadFile(args[1]);
             }
 
-            // 
+            // Build configuration from appsettings.json.
+            IConfiguration config = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .Build();
+            CS_PythonBridge pyBridge = new CS_PythonBridge(config);
 
-            Console.WriteLine(rawData);
+            // Clean the data
+            string cleanData = pyBridge.CleanText(rawData);
 
+            // Get the bigrams as a json string
+            string gramData = pyBridge.getNgrams(cleanData);
+
+            // Generate graph 
+            pyBridge.GenerateHistogram(gramData);
+
+            Environment.Exit(0);
         }
     }
 }
